@@ -1,0 +1,13 @@
+GET https://phonebook-vtx9.onrender.com/api/persons
+###
+DELETE https://phonebook-vtx9.onrender.com/api/persons
+###
+PUT https://phonebook-vtx9.onrender.com/api/persons
+###
+POST https://phonebook-vtx9.onrender.com/api/persons HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Nike",
+    "number": "123676575"
+}
