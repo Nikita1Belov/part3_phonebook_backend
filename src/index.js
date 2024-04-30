@@ -54,17 +54,16 @@ app.get('/api/notes/:id', (request, response) => {
 })
 
 app.delete('/api/persons/:id', function(request, response) {
-  const id = Number(request.params.id)
+  const id = request.params.id
   persons = persons.filter(person => person.id !== id)
   response.status(204).end()
 })
 
 app.put('/api/persons/:id', function(request, response) {
   const body = request.body
-  const id = Number(request.params.id)
   const person = {
     name: body.name,
-    number: body.number,
+    number: body.number
   }
   persons[persons.map((x, i) => [i, x]).filter(
     x => x[1].id === id)[0][0]] = person
@@ -75,20 +74,18 @@ app.use(express.json())
 
 app.post('/api/persons', (request, response) => {
   const body = request.body
-
   if (body.content === undefined) {
     return response.status(400).json({ error: 'content missing' })
   }
-
-  const note = new Note({
-    content: body.content,
-    important: body.important || false,
+  const person = new Person({
+    name: body.name,
+    number: body.number,
   })
-
-  note.save().then(savedNote => {
-    response.json(savedNote)
+  person.save().then(savedPerson => {
+    response.json(savedPerson)
   })
 })
+
 /*
 app.post('/api/persons', function(request, response) {
   const body = request.body
