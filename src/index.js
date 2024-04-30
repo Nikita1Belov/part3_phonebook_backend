@@ -64,11 +64,9 @@ app.put('/api/persons/:id', function(request, response) {
   response.json(person)
 })
 
-app.use(express.json())
-
 app.post('/api/persons', (request, response) => {
   const body = request.body
-  if (body.content === undefined) {
+  if (body.name === undefined || body.number === undefined) {
     return response.status(400).json({ error: 'content missing' })
   }
   const person = new Person({
@@ -82,13 +80,6 @@ app.post('/api/persons', (request, response) => {
 })
 
 /*
-app.post('/api/persons', function(request, response) {
-  const body = request.body
-  const person = {
-    id: generateId(),
-    name: body.name,
-    number: body.number,
-  }
   if(!filterName(persons, person.name) && person.name != ""){
     persons = persons.concat(person)
     response.json(persons)

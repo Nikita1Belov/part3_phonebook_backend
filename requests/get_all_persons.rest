@@ -1,10 +1,10 @@
-GET https://phonebook-vtx9.onrender.com/api/persons
+GET http://localhost:3001/api/persons
 ###
-DELETE https://phonebook-vtx9.onrender.com/api/persons
+DELETE http://localhost:3001/api/persons
 ###
-PUT https://phonebook-vtx9.onrender.com/api/persons
+PUT http://localhost:3001/api/persons
 ###
-POST https://phonebook-vtx9.onrender.com/api/persons HTTP/1.1
+POST http://localhost:3001/api/persons HTTP/1.1
 content-type: application/json
 
 {
