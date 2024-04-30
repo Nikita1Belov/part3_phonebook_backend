@@ -47,14 +47,10 @@ app.get('/api/persons', (request, response) => {
   })
 })
 
-app.get('/api/persons/:id', (request, response) => {
-  const id = Number(request.params.id)
-  const person = persons.find(person => person.id === id)
-  if (person) {
-    response.json(person)
-  } else {
-    response.status(404).end()
-  }
+app.get('/api/notes/:id', (request, response) => {
+  Person.findById(request.params.id).then(person => {
+    response.json(note)
+  })
 })
 
 app.delete('/api/persons/:id', function(request, response) {
@@ -77,6 +73,24 @@ app.put('/api/persons/:id', function(request, response) {
 })
 
 app.use(express.json())
+
+app.post('/api/persons', (request, response) => {
+  const body = request.body
+
+  if (body.content === undefined) {
+    return response.status(400).json({ error: 'content missing' })
+  }
+
+  const note = new Note({
+    content: body.content,
+    important: body.important || false,
+  })
+
+  note.save().then(savedNote => {
+    response.json(savedNote)
+  })
+})
+/*
 app.post('/api/persons', function(request, response) {
   const body = request.body
   const person = {
@@ -97,3 +111,4 @@ app.post('/api/persons', function(request, response) {
     })
   }
 })
+*/
