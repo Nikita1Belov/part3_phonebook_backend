@@ -63,7 +63,6 @@ app.put('/api/persons/:id', function(request, response) {
   const body = request.body
   const id = Number(request.params.id)
   const person = {
-    id: id,
     name: body.name,
     number: body.number,
   }
