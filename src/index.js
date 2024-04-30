@@ -55,6 +55,7 @@ app.delete('/api/persons/:id', function(request, response) {
 app.put('/api/persons/:id', function(request, response) {
   const body = request.body
   const person = {
+    id: body.id,
     name: body.name,
     number: body.number
   }
@@ -71,6 +72,7 @@ app.post('/api/persons', (request, response) => {
     return response.status(400).json({ error: 'content missing' })
   }
   const person = new Person({
+    id: body.id,
     name: body.name,
     number: body.number,
   })
