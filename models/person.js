@@ -19,8 +19,6 @@ const personSchema = new mongoose.Schema({
   number: String
 })
 
-const Person = mongoose.model('Person', personSchema)
-
 personSchema.set('toJSON', {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id.toString()
