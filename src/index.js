@@ -21,13 +21,6 @@ app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
 })
 
-const generateId = () => {
-  const maxId = 100000
-    ? Math.max(...persons.map(person => person.id))
-    : 0
-  return maxId + 1
-}
-
 const filterName = (persons, personName) => {
   const person = persons.find(person => person.name === personName)
   if (person) {
@@ -38,7 +31,7 @@ const filterName = (persons, personName) => {
 }
 
 app.get('/info', function(request, response) {
-  response.send(`<p>Phonebook has info for ${persons.length} people</p><p>${new Date().toString()}</p>`)
+  response.send(`<p>Phonebook has info</p>`)
 })
 
 app.get('/api/persons', (request, response) => {
@@ -49,7 +42,7 @@ app.get('/api/persons', (request, response) => {
 
 app.get('/api/notes/:id', (request, response) => {
   Person.findById(request.params.id).then(person => {
-    response.json(note)
+    response.json(person)
   })
 })
 
